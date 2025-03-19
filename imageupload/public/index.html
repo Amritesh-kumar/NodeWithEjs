@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload and Display</title>
+</head>
+<body>
+    <h2>Upload Image</h2>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" id="imageFile" name="image" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    <h2>Display Image</h2>
+    <input type="number" id="imageId" placeholder="Enter Image ID">
+    <button onclick="loadImage()">Show Image</button>
+    <br>
+    <img id="displayImage" src="" width="300" style="display:none;">
+
+    <script>
+        document.getElementById("uploadForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+            const formData = new FormData();
+            formData.append("image", document.getElementById("imageFile").files[0]);
+
+            const response = await fetch("/upload", {
+                method: "POST",
+                body: formData
+            });
+            alert(await response.text());
+        });
+
+        function loadImage() {
+            const id = document.getElementById("imageId").value;
+            document.getElementById("displayImage").src = `/image/${id}`;
+            document.getElementById("displayImage").style.display = "block";
+        }
+    </script>
+</body>
+</html>
