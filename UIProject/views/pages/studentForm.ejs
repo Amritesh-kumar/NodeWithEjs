@@ -1,0 +1,35 @@
+
+
+<h2>Student Course Registration</h2>
+
+<form method="post" action="/submit">
+  <%- include('../partials/textbox', { label: 'Student Name', name: 'studentName', value: '', placeholder: 'Enter name' }) %>
+  
+  <%- include('../partials/checkbox', { label: 'Enrolled', name: 'isEnrolled', checked: false }) %>
+  
+  <%- include('../partials/dropdown', {
+    label: 'Select Course',
+    name: 'course',
+    selected: 'Chemistry',
+    options: courses
+  }) %>
+
+  <%- include('../partials/dropdown', {
+    label: 'Select 2nd Course',
+    name: 'course',
+    selected: '',
+    options: courses
+  }) %>
+
+  <%- include('../partials/dropdown', {
+    label: 'Select Gender',
+    name: 'gender',
+    selected: 'Female',
+    options: [
+      { label: 'Male', value: 'male' },
+      { label: 'Female', value: 'female' },
+      { label: 'Other', value: 'other' }
+    ]
+  }) %>
+  <button type="submit">Submit</button>
+</form>

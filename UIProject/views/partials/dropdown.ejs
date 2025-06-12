@@ -1,0 +1,11 @@
+<div class="form-group">
+    <% if (label) { %>
+      <label><%= label %></label>
+    <% } %>
+    <select name="<%= name %>">
+      <% options.forEach(opt => { %>
+        <option value="<%= opt.value %>" <%= (opt.label === selected || opt.value === selected)  ? 'selected' : '' %>><%= opt.label %></option>
+      <% }); %>
+    </select>
+  </div>
+  
